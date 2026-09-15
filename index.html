@@ -1,0 +1,1297 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>KnowyGo</title>
+    <meta
+      name="description"
+      content="KnowyGo turns family journeys into fun learning adventures. Discover kid-friendly facts about places, landmarks, nature, history, culture and more as you travel."
+    />
+    <meta
+      name="keywords"
+      content="KnowyGo, travel trivia for kids, kids travel app, educational travel app, family travel, travel facts for children, Knowy"
+    />
+    <meta name="author" content="KnowyGo" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#eff8ff" />
+
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="KnowyGo - Make Every Journey a Discovery"
+    />
+    <meta
+      property="og:description"
+      content="A fun travel companion that helps kids discover interesting facts about the places they travel through."
+    />
+    <meta property="og:image" content="./icon.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="KnowyGo - Fun Travel Facts for Curious Kids"
+    />
+    <meta
+      name="twitter:description"
+      content="Turn every family journey into a little learning adventure with Knowy and KnowyGo."
+    />
+
+    <link rel="icon" href="./icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "KnowyGo",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "iOS, Android",
+        "description": "A kid-friendly travel companion that turns journeys into learning adventures with fun facts about places, nature, history, geography and culture.",
+        "email": "knowygo@gmail.com"
+      }
+    </script>
+
+    <style>
+      :root {
+        --sky: #eaf6ff;
+        --sky-2: #dff2ff;
+        --blue: #1689e8;
+        --blue-dark: #0873cf;
+        --cyan: #39c7c2;
+        --green: #83d62b;
+        --green-dark: #54ad19;
+        --navy: #183455;
+        --ink: #233d59;
+        --muted: #6e8197;
+        --white: #ffffff;
+        --card: rgba(255, 255, 255, 0.88);
+        --border: rgba(55, 125, 170, 0.14);
+        --shadow: 0 20px 55px rgba(39, 104, 150, 0.13);
+        --radius: 28px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        font-family:
+          "Nunito",
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        color: var(--ink);
+        background: var(--sky);
+        line-height: 1.55;
+        overflow-x: hidden;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button {
+        font: inherit;
+      }
+
+      .page {
+        position: relative;
+        min-height: 100vh;
+        overflow: hidden;
+      }
+
+      .blob {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+        filter: blur(1px);
+        opacity: 0.65;
+      }
+      .blob.one {
+        width: 380px;
+        height: 380px;
+        background: #d5f4ff;
+        top: -180px;
+        right: -80px;
+      }
+      .blob.two {
+        width: 260px;
+        height: 260px;
+        background: #e9ffd0;
+        top: 640px;
+        left: -130px;
+      }
+      .blob.three {
+        width: 220px;
+        height: 220px;
+        background: #dff9f3;
+        bottom: 450px;
+        right: -90px;
+      }
+
+      .container {
+        width: min(1160px, calc(100% - 40px));
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+      }
+
+      header {
+        padding: 18px 0;
+        position: relative;
+        z-index: 20;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 8px 0;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 23px;
+        font-weight: 900;
+        color: var(--navy);
+        letter-spacing: -0.5px;
+      }
+
+      .brand img {
+        width: 46px;
+        height: 46px;
+        object-fit: contain;
+        filter: drop-shadow(0 5px 9px rgba(29, 104, 153, 0.12));
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        font-weight: 700;
+        color: #55708a;
+        font-size: 15px;
+      }
+      .nav-links a {
+        transition: color 0.2s ease;
+      }
+      .nav-links a:hover {
+        color: var(--blue);
+      }
+
+      .nav-cta {
+        padding: 11px 19px;
+        border-radius: 14px;
+        background: var(--white);
+        border: 1px solid var(--border);
+        box-shadow: 0 7px 20px rgba(43, 111, 151, 0.08);
+        color: var(--blue-dark) !important;
+      }
+
+      .menu-btn {
+        display: none;
+        border: 0;
+        background: white;
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        box-shadow: 0 8px 22px rgba(35, 93, 130, 0.1);
+        cursor: pointer;
+        color: var(--navy);
+        font-size: 22px;
+      }
+
+      .hero {
+        padding: 58px 0 76px;
+        min-height: 650px;
+        display: grid;
+        align-items: center;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.03fr 0.97fr;
+        gap: 55px;
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.76);
+        border: 1px solid rgba(43, 144, 191, 0.14);
+        border-radius: 999px;
+        padding: 8px 14px;
+        color: var(--blue-dark);
+        font-size: 13px;
+        font-weight: 800;
+        box-shadow: 0 8px 24px rgba(43, 115, 150, 0.07);
+        margin-bottom: 18px;
+      }
+
+      .eyebrow .dot {
+        width: 8px;
+        height: 8px;
+        background: var(--green);
+        border-radius: 50%;
+        box-shadow: 0 0 0 5px rgba(131, 214, 43, 0.14);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(48px, 6.5vw, 78px);
+        line-height: 0.98;
+        letter-spacing: -3.5px;
+        color: var(--navy);
+        font-weight: 900;
+        max-width: 720px;
+      }
+
+      h1 .gradient {
+        background: linear-gradient(
+          100deg,
+          #1087e6 5%,
+          #1bb8cf 50%,
+          #65c82a 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .hero-copy {
+        font-size: 20px;
+        color: var(--muted);
+        max-width: 610px;
+        margin: 24px 0 30px;
+        font-weight: 600;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 13px;
+      }
+
+      .primary-btn,
+      .secondary-btn {
+        border: 0;
+        border-radius: 16px;
+        padding: 15px 22px;
+        font-weight: 900;
+        cursor: pointer;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      .primary-btn:hover,
+      .secondary-btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .primary-btn {
+        color: white;
+        background: linear-gradient(135deg, #16b7bd, #48c95a);
+        box-shadow: 0 13px 28px rgba(48, 183, 146, 0.25);
+      }
+      .secondary-btn {
+        color: var(--blue-dark);
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid var(--border);
+        box-shadow: 0 10px 25px rgba(43, 112, 148, 0.07);
+      }
+
+      .mini-note {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        color: #72869a;
+        font-size: 13px;
+        margin-top: 16px;
+        font-weight: 700;
+      }
+
+      .hero-art {
+        position: relative;
+        min-height: 500px;
+        display: grid;
+        place-items: center;
+      }
+
+      .art-glow {
+        position: absolute;
+        width: 410px;
+        height: 410px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(83, 214, 223, 0.26),
+          rgba(119, 220, 47, 0.13) 52%,
+          transparent 70%
+        );
+        animation: pulse 4s ease-in-out infinite;
+      }
+
+      .character {
+        position: relative;
+        width: min(430px, 90%);
+        z-index: 3;
+        filter: drop-shadow(0 28px 25px rgba(39, 94, 125, 0.17));
+        animation: float 4.5s ease-in-out infinite;
+      }
+
+      .spark {
+        position: absolute;
+        z-index: 4;
+        color: #f4b82f;
+        font-size: 25px;
+        font-weight: 900;
+        animation: twinkle 2.5s ease-in-out infinite;
+      }
+      .spark.s1 {
+        top: 60px;
+        right: 70px;
+      }
+      .spark.s2 {
+        bottom: 100px;
+        left: 60px;
+        color: #65c82a;
+        animation-delay: 0.7s;
+      }
+      .spark.s3 {
+        top: 145px;
+        left: 55px;
+        color: #18a8dd;
+        animation-delay: 1.2s;
+      }
+
+      .route-card {
+        position: absolute;
+        z-index: 5;
+        bottom: 28px;
+        right: 12px;
+        background: rgba(255, 255, 255, 0.93);
+        border: 1px solid rgba(44, 123, 161, 0.13);
+        box-shadow: 0 18px 38px rgba(44, 103, 136, 0.14);
+        border-radius: 19px;
+        padding: 13px 16px;
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        font-weight: 800;
+        font-size: 13px;
+      }
+      .route-icon {
+        width: 37px;
+        height: 37px;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        background: #e8f8ff;
+        color: var(--blue);
+        font-size: 18px;
+      }
+
+      .strip {
+        background: rgba(255, 255, 255, 0.72);
+        border-top: 1px solid rgba(58, 139, 174, 0.09);
+        border-bottom: 1px solid rgba(58, 139, 174, 0.09);
+      }
+      .strip-inner {
+        min-height: 76px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 44px;
+        flex-wrap: wrap;
+        color: #638099;
+        font-weight: 800;
+        font-size: 14px;
+      }
+      .strip-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+      }
+      .strip-icon {
+        width: 31px;
+        height: 31px;
+        border-radius: 10px;
+        display: grid;
+        place-items: center;
+        background: #f0fbff;
+        color: var(--blue);
+        font-size: 15px;
+      }
+
+      section {
+        padding: 100px 0;
+      }
+
+      .section-head {
+        max-width: 670px;
+        margin: 0 auto 48px;
+        text-align: center;
+      }
+      .section-kicker {
+        color: var(--blue);
+        font-size: 13px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 9px;
+      }
+      h2 {
+        margin: 0;
+        color: var(--navy);
+        font-size: clamp(34px, 4vw, 52px);
+        line-height: 1.08;
+        letter-spacing: -2px;
+        font-weight: 900;
+      }
+      .section-head p {
+        margin: 16px auto 0;
+        color: var(--muted);
+        font-size: 17px;
+        font-weight: 600;
+      }
+
+      .features {
+        background: rgba(255, 255, 255, 0.42);
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+
+      .feature {
+        position: relative;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 30px;
+        box-shadow: 0 13px 38px rgba(45, 110, 145, 0.08);
+        overflow: hidden;
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+      .feature:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 22px 45px rgba(45, 110, 145, 0.12);
+      }
+      .feature::after {
+        content: "";
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: #eefbff;
+        right: -35px;
+        bottom: -45px;
+      }
+      .feature-icon {
+        width: 57px;
+        height: 57px;
+        border-radius: 18px;
+        display: grid;
+        place-items: center;
+        font-size: 26px;
+        background: #e7f8ff;
+        margin-bottom: 22px;
+      }
+      .feature:nth-child(2) .feature-icon {
+        background: #efffdc;
+      }
+      .feature:nth-child(3) .feature-icon {
+        background: #e4faf4;
+      }
+      .feature h3 {
+        margin: 0 0 8px;
+        color: var(--navy);
+        font-size: 22px;
+        font-weight: 900;
+      }
+      .feature p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      .how-grid {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 80px;
+        align-items: center;
+      }
+
+      .how-art {
+        background: linear-gradient(145deg, #dff5ff, #efffd9);
+        border-radius: 38px;
+        min-height: 490px;
+        position: relative;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        border: 1px solid rgba(50, 136, 164, 0.12);
+      }
+      .how-art::before {
+        content: "";
+        position: absolute;
+        width: 330px;
+        height: 330px;
+        border: 2px dashed rgba(20, 142, 214, 0.25);
+        border-radius: 50%;
+      }
+      .how-art img {
+        width: 330px;
+        max-width: 80%;
+        position: relative;
+        z-index: 2;
+        filter: drop-shadow(0 25px 25px rgba(44, 101, 128, 0.16));
+      }
+
+      .steps {
+        display: grid;
+        gap: 24px;
+      }
+      .step {
+        display: grid;
+        grid-template-columns: 52px 1fr;
+        gap: 17px;
+        align-items: start;
+      }
+      .step-num {
+        width: 52px;
+        height: 52px;
+        border-radius: 17px;
+        display: grid;
+        place-items: center;
+        background: white;
+        border: 1px solid var(--border);
+        color: var(--blue);
+        font-weight: 900;
+        box-shadow: 0 9px 20px rgba(42, 107, 141, 0.08);
+      }
+      .step h3 {
+        margin: 0 0 4px;
+        font-size: 19px;
+        color: var(--navy);
+        font-weight: 900;
+      }
+      .step p {
+        margin: 0;
+        color: var(--muted);
+        font-weight: 600;
+        font-size: 15px;
+      }
+
+      .kid-section {
+        padding-top: 25px;
+      }
+      .kid-card {
+        border-radius: 38px;
+        background: linear-gradient(
+          135deg,
+          #0e86e4 0%,
+          #20b6cb 58%,
+          #68c92b 100%
+        );
+        color: white;
+        padding: 65px 70px;
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        align-items: center;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 25px 60px rgba(25, 131, 177, 0.2);
+      }
+      .kid-card::before,
+      .kid-card::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.14);
+      }
+      .kid-card::before {
+        width: 320px;
+        height: 320px;
+        right: -90px;
+        top: -170px;
+      }
+      .kid-card::after {
+        width: 220px;
+        height: 220px;
+        left: -120px;
+        bottom: -130px;
+      }
+      .kid-card h2 {
+        color: white;
+        max-width: 620px;
+      }
+      .kid-card p {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 17px;
+        font-weight: 600;
+        max-width: 620px;
+        margin: 17px 0 25px;
+      }
+      .white-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 14px 20px;
+        border-radius: 15px;
+        background: white;
+        color: var(--blue-dark);
+        font-weight: 900;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+      .kid-img {
+        width: 285px;
+        justify-self: end;
+        position: relative;
+        z-index: 2;
+        filter: drop-shadow(0 22px 20px rgba(0, 0, 0, 0.14));
+        animation: float 4.7s ease-in-out infinite;
+      }
+
+      .parents {
+        background: rgba(255, 255, 255, 0.5);
+      }
+      .parent-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 22px;
+      }
+      .parent-card {
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: 26px;
+        padding: 29px;
+        box-shadow: 0 12px 35px rgba(45, 110, 145, 0.07);
+      }
+      .parent-card h3 {
+        margin: 0 0 8px;
+        color: var(--navy);
+        font-size: 20px;
+        font-weight: 900;
+      }
+      .parent-card p {
+        margin: 0;
+        color: var(--muted);
+        font-weight: 600;
+        font-size: 15px;
+      }
+      .check-list {
+        margin: 17px 0 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 10px;
+      }
+      .check-list li {
+        color: #58728b;
+        font-weight: 700;
+        font-size: 14px;
+        display: flex;
+        gap: 9px;
+      }
+      .check-list li::before {
+        content: "✓";
+        color: #62bd28;
+        font-weight: 900;
+      }
+
+      .contact {
+        padding: 90px 0 105px;
+        text-align: center;
+      }
+      .contact-box {
+        max-width: 760px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid var(--border);
+        border-radius: 34px;
+        padding: 50px 35px;
+        box-shadow: var(--shadow);
+      }
+      .contact-box .tiny {
+        color: var(--blue);
+        font-weight: 900;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 1.3px;
+      }
+      .contact-box h2 {
+        margin-top: 8px;
+      }
+      .contact-box p {
+        color: var(--muted);
+        font-weight: 600;
+        max-width: 520px;
+        margin: 15px auto 24px;
+      }
+      .email {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 13px 18px;
+        border-radius: 14px;
+        background: #edfaff;
+        color: var(--blue-dark);
+        font-weight: 900;
+        border: 1px solid rgba(21, 137, 214, 0.11);
+      }
+
+      footer {
+        background: #163451;
+        color: rgba(255, 255, 255, 0.7);
+        padding: 30px 0;
+      }
+      .footer-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        font-size: 13px;
+        font-weight: 700;
+      }
+      .footer-brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: white;
+        font-size: 16px;
+        font-weight: 900;
+      }
+      .footer-brand img {
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(22px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) rotate(-1deg);
+        }
+        50% {
+          transform: translateY(-12px) rotate(1deg);
+        }
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(0.96);
+          opacity: 0.55;
+        }
+        50% {
+          transform: scale(1.04);
+          opacity: 0.8;
+        }
+      }
+      @keyframes twinkle {
+        0%,
+        100% {
+          transform: scale(0.8) rotate(-5deg);
+          opacity: 0.45;
+        }
+        50% {
+          transform: scale(1.1) rotate(8deg);
+          opacity: 1;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .nav-links {
+          display: none;
+          position: absolute;
+          top: 68px;
+          right: 0;
+          left: 0;
+          padding: 15px;
+          background: rgba(255, 255, 255, 0.97);
+          border: 1px solid var(--border);
+          border-radius: 18px;
+          box-shadow: var(--shadow);
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .nav-links.open {
+          display: flex;
+        }
+        .nav-links a {
+          padding: 10px 12px;
+        }
+        .menu-btn {
+          display: block;
+        }
+        .hero {
+          padding-top: 35px;
+        }
+        .hero-grid,
+        .how-grid,
+        .kid-card {
+          grid-template-columns: 1fr;
+        }
+        .hero-art {
+          min-height: 420px;
+          order: -1;
+        }
+        .hero-copy {
+          font-size: 18px;
+        }
+        .how-grid {
+          gap: 45px;
+        }
+        .kid-card {
+          padding: 48px 38px;
+        }
+        .kid-img {
+          justify-self: center;
+          width: 220px;
+          margin-top: 25px;
+        }
+        .feature-grid {
+          grid-template-columns: 1fr;
+        }
+        .parent-grid {
+          grid-template-columns: 1fr;
+        }
+        section {
+          padding: 78px 0;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .container {
+          width: min(100% - 28px, 1160px);
+        }
+        h1 {
+          font-size: 50px;
+          letter-spacing: -2.6px;
+        }
+        .hero {
+          padding-bottom: 45px;
+        }
+        .hero-art {
+          min-height: 355px;
+        }
+        .art-glow {
+          width: 300px;
+          height: 300px;
+        }
+        .route-card {
+          right: 0;
+          bottom: 10px;
+        }
+        .strip-inner {
+          gap: 17px;
+          justify-content: flex-start;
+          padding: 14px 0;
+        }
+        .feature,
+        .parent-card {
+          padding: 24px;
+        }
+        .kid-card {
+          padding: 38px 25px;
+          border-radius: 29px;
+        }
+        .contact-box {
+          padding: 40px 22px;
+          border-radius: 27px;
+        }
+        .footer-inner {
+          flex-direction: column;
+          text-align: center;
+        }
+        .how-art {
+          min-height: 390px;
+        }
+        .how-art img {
+          width: 270px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="page">
+      <div class="blob one"></div>
+      <div class="blob two"></div>
+      <div class="blob three"></div>
+
+      <header>
+        <div class="container">
+          <nav class="nav" aria-label="Main navigation">
+            <a class="brand" href="#top" aria-label="KnowyGo home">
+              <img src="./icon.png" alt="KnowyGo logo" />
+              <span>KnowyGo</span>
+            </a>
+
+            <div class="nav-links" id="navLinks">
+              <a href="#discover">Discover</a>
+              <a href="#how">How it works</a>
+              <a href="#parents">For parents</a>
+              <a href="privacy-policy.html">Privacy</a>
+              <a class="nav-cta" href="#contact">Get in touch</a>
+            </div>
+
+            <button
+              class="menu-btn"
+              id="menuBtn"
+              aria-label="Open menu"
+              aria-expanded="false"
+            >
+              ☰
+            </button>
+          </nav>
+        </div>
+      </header>
+
+      <main id="top">
+        <section class="hero">
+          <div class="container hero-grid">
+            <div class="reveal">
+              <div class="eyebrow">
+                <span class="dot"></span> Made for curious young explorers
+              </div>
+              <h1>Every journey has a <span class="gradient">story.</span></h1>
+              <p class="hero-copy">
+                KnowyGo turns family travel into a fun learning adventure
+                bringing children interesting, kid-friendly facts about the
+                places they pass through.
+              </p>
+              <div class="hero-actions">
+                <a class="primary-btn" href="#how">Discover KnowyGo →</a>
+                <a class="secondary-btn" href="#contact">Say hello</a>
+              </div>
+              <div class="mini-note">
+                Built around curiosity, travel and little moments of discovery.
+              </div>
+            </div>
+
+            <div class="hero-art reveal">
+              <div class="art-glow"></div>
+              <span class="spark s1">✦</span>
+              <span class="spark s2">✦</span>
+              <span class="spark s3">•</span>
+              <img class="character" src="knowy.png" />
+              <div class="route-card">
+                <div class="route-icon">⌖</div>
+                <div>
+                  New place.<br /><span style="color: #1489df"
+                    >New thing to know.</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="strip">
+          <div class="container strip-inner">
+            <div class="strip-item">
+              <span class="strip-icon">⌖</span> Discover places
+            </div>
+            <div class="strip-item">
+              <span class="strip-icon">★</span> Learn little facts
+            </div>
+            <div class="strip-item">
+              <span class="strip-icon">♡</span> Save favourites
+            </div>
+            <div class="strip-item">
+              <span class="strip-icon">→</span> Enjoy the journey
+            </div>
+          </div>
+        </div>
+
+        <section class="features" id="discover">
+          <div class="container">
+            <div class="section-head reveal">
+              <div class="section-kicker">What Knowy brings</div>
+              <h2>Travel can be a classroom without feeling like one.</h2>
+              <p>
+                Short, friendly discoveries help kids notice the world around
+                them while the family keeps moving.
+              </p>
+            </div>
+
+            <div class="feature-grid">
+              <article class="feature reveal">
+                <div class="feature-icon">⌖</div>
+                <h3>Discover nearby</h3>
+                <p>
+                  KnowyGo uses the journey to surface interesting places,
+                  landmarks and stories around the route.
+                </p>
+              </article>
+              <article class="feature reveal">
+                <div class="feature-icon">✦</div>
+                <h3>Learn through stories</h3>
+                <p>
+                  Facts cover history, geography, nature, culture, food,
+                  animals, science and more written for kids.
+                </p>
+              </article>
+              <article class="feature reveal">
+                <div class="feature-icon">♡</div>
+                <h3>Keep the memories</h3>
+                <p>
+                  Kids can save discoveries and build a personal collection of
+                  places and facts they loved.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="how">
+          <div class="container how-grid">
+            <div class="how-art reveal">
+              <img src="./icon.png" alt="KnowyGo logo" />
+            </div>
+
+            <div class="reveal">
+              <div class="section-kicker">How it works</div>
+              <h2>From “Where are we?” to “Wow, really?”</h2>
+              <p
+                style="
+                  color: var(--muted);
+                  font-weight: 600;
+                  font-size: 17px;
+                  margin: 16px 0 28px;
+                "
+              >
+                KnowyGo is designed to make discoveries feel natural during a
+                family journey.
+              </p>
+
+              <div class="steps">
+                <div class="step">
+                  <div class="step-num">1</div>
+                  <div>
+                    <h3>Start your journey</h3>
+                    <p>
+                      Set up a child profile with an age group and interests.
+                    </p>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-num">2</div>
+                  <div>
+                    <h3>Knowy watches the journey</h3>
+                    <p>
+                      As the family travels, the app detects new places along
+                      the way.
+                    </p>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-num">3</div>
+                  <div>
+                    <h3>Discover something interesting</h3>
+                    <p>
+                      Knowy shares a short, age-appropriate fact about the
+                      place.
+                    </p>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-num">4</div>
+                  <div>
+                    <h3>Keep exploring</h3>
+                    <p>
+                      Read more, save favourite discoveries and build a travel
+                      learning timeline.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="kid-section">
+          <div class="container">
+            <div class="kid-card reveal">
+              <div>
+                <div class="section-kicker" style="color: #dfffae">
+                  Meet your travel buddy
+                </div>
+                <h2>Hi, I’m Knowy!</h2>
+                <p>
+                  I’m here to make the places you travel through a little more
+                  interesting. There is always something new to notice - a
+                  strange animal, an old fort, a giant beach, a tasty food or a
+                  story hiding nearby.
+                </p>
+                <a class="white-btn" href="#contact">Come explore with me →</a>
+              </div>
+              <img class="kid-img" src="./knowy.png" alt="KnowyGo character" />
+            </div>
+          </div>
+        </section>
+
+        <section class="parents" id="parents">
+          <div class="container">
+            <div class="section-head reveal">
+              <div class="section-kicker">For families</div>
+              <h2>Made for little explorers. Designed with parents in mind.</h2>
+              <p>
+                KnowyGo keeps the experience simple for children while giving
+                parents control over the journey.
+              </p>
+            </div>
+
+            <div class="parent-grid">
+              <article class="parent-card reveal">
+                <h3>Child-friendly by design</h3>
+                <p>
+                  Content is shaped around age and curiosity, with simple
+                  language and engaging stories instead of textbook-style
+                  explanations.
+                </p>
+                <ul class="check-list">
+                  <li>Age-appropriate discoveries</li>
+                  <li>Interests can guide the experience</li>
+                  <li>Simple, visual interface</li>
+                </ul>
+              </article>
+
+              <article class="parent-card reveal">
+                <h3>Parents stay in control</h3>
+                <p>
+                  Profiles and travel preferences are designed so families can
+                  shape how KnowyGo works for their children.
+                </p>
+                <ul class="check-list">
+                  <li>Manage child profiles</li>
+                  <li>Choose notification preferences</li>
+                  <li>Control the travel experience</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="contact" id="contact">
+          <div class="container">
+            <div class="contact-box reveal">
+              <div class="tiny">Let's talk</div>
+              <h2>Have a question about KnowyGo?</h2>
+              <p>
+                We’d love to hear from parents, families and curious explorers.
+              </p>
+              <a class="email" href="mailto:knowygo@gmail.com"
+                >✉ knowygo@gmail.com</a
+              >
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="container footer-inner">
+          <div class="footer-brand">
+            <img src="./icon.png" alt="KnowyGo logo" />
+            KnowyGo
+          </div>
+          <div>
+            <span
+              >© <span id="year"></span> KnowyGo. Make every journey a
+              discovery.</span
+            >
+            <span> · </span>
+            <a
+              href="privacy-policy.html"
+              style="color: rgba(255, 255, 255, 0.8); font-weight: 700"
+              >Privacy Policy</a
+            >
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      const menuBtn = document.getElementById("menuBtn");
+      const navLinks = document.getElementById("navLinks");
+
+      menuBtn.addEventListener("click", () => {
+        const open = navLinks.classList.toggle("open");
+        menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+        menuBtn.textContent = open ? "×" : "☰";
+      });
+
+      navLinks.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          navLinks.classList.remove("open");
+          menuBtn.setAttribute("aria-expanded", "false");
+          menuBtn.textContent = "☰";
+        });
+      });
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
+
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => observer.observe(el));
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
